@@ -1,0 +1,1 @@
+### Ignore case while sorting an array of strings
