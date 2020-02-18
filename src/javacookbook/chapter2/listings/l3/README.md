@@ -1,0 +1,1 @@
+### Ignore case in find and replace string methods
