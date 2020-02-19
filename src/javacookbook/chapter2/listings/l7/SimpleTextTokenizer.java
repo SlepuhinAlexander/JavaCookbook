@@ -28,22 +28,17 @@ public class SimpleTextTokenizer {
     }
 
     private static String getTextToken(Matcher matcher) {
-        matcher.usePattern(space);
-        matcher.find();
-        matcher.usePattern(number);
-        if (matcher.find()) {
+        matcher.usePattern(space).find();
+        if (matcher.usePattern(number).find()) {
             return matcher.group();
         }
-        matcher.usePattern(word);
-        if (matcher.find()) {
+        if (matcher.usePattern(word).find()) {
             return matcher.group();
         }
-        matcher.usePattern(punctuation);
-        if (matcher.find()) {
+        if (matcher.usePattern(punctuation).find()) {
             return matcher.group();
         }
-        matcher.usePattern(end);
-        if (matcher.find()) {
+        if (matcher.usePattern(end).find()) {
             return "";
         }
         return null;
