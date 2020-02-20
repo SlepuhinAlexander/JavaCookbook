@@ -6,11 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class HexDump {
-    // expected to use filename as first argument
     public static void main(String[] args) {
         FileInputStream in;
         if (args.length < 1) {
             System.out.println("Usage: java HexDump filename");
+            // test usage: java HexDump README.md
             return;
         }
         try {
@@ -18,11 +18,11 @@ public class HexDump {
             path += HexDump.class.getPackageName().replace(".","/") + "/";
             in = new FileInputStream(new File(path + args[0]));
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("File " + args[0] + " not found");
             return;
         }
         try {
-            System.out.println(args[0] + " in hex:"); // for example, using the README.md
+            System.out.println(args[0] + " in hex:");
             int length;
             byte[] data = new byte[16];
             do {
@@ -33,13 +33,13 @@ public class HexDump {
                 System.out.println();
             } while (length != -1);
         } catch (IOException e) {
-            System.out.println("Error while reading file");
+            System.out.println("Error while reading file " + args[0]);
             return;
         }
         try {
             in.close();
         } catch (IOException e) {
-            System.out.println("Error while closing file");
+            System.out.println("Error while closing file " + args[0]);
         }
     }
 }
