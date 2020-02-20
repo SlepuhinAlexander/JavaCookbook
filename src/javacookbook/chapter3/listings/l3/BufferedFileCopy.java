@@ -4,15 +4,15 @@ import java.io.*;
 
 public class BufferedFileCopy {
     public static void main(String[] args) {
-        BufferedInputStream in;
-        BufferedOutputStream out;
-        String path = System.getProperty("java.class.path") + "/";
-        path += BufferedFileCopy.class.getPackageName().replace(".", "/") + "/";
         if (args.length < 2) {
             System.out.println("Usage: java BufferedFileCopy originalFilename copyFilename");
             // test usage: java BufferedFileCopy README.md README.copy
             return;
         }
+        String path = System.getProperty("java.class.path") + "/";
+        path += BufferedFileCopy.class.getPackageName().replace(".", "/") + "/";
+        BufferedInputStream in;
+        BufferedOutputStream out;
         try {
             in = new BufferedInputStream(new FileInputStream(new File(path + args[0])));
         } catch (FileNotFoundException e) {
