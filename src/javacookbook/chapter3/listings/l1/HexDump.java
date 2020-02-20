@@ -8,7 +8,7 @@ import java.io.IOException;
 public class HexDump {
     // expected to use filename as first argument
     public static void main(String[] args) {
-        FileInputStream fis;
+        FileInputStream in;
         if (args.length < 1) {
             System.out.println("Usage: java HexDump filename");
             return;
@@ -16,7 +16,7 @@ public class HexDump {
         try {
             String path = System.getProperty("java.class.path") + "/";
             path += HexDump.class.getPackageName().replace(".","/") + "/";
-            fis = new FileInputStream(new File(path + args[0]));
+            in = new FileInputStream(new File(path + args[0]));
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
             return;
@@ -26,7 +26,7 @@ public class HexDump {
             int length;
             byte[] data = new byte[16];
             do {
-                length = fis.read(data);
+                length = in.read(data);
                 for (int i = 0; i < length; i++) {
                     System.out.printf("%02X ", data[i]);
                 }
@@ -37,7 +37,7 @@ public class HexDump {
             return;
         }
         try {
-            fis.close();
+            in.close();
         } catch (IOException e) {
             System.out.println("Error while closing file");
         }

@@ -16,28 +16,28 @@ public class WriteBytes {
         for (byte b : values) {
             System.out.print(((char) b));
         }
-        FileOutputStream fos;
+        FileOutputStream out;
         try {
             String path = System.getProperty("java.class.path") + "/";
             path += WriteBytes.class.getPackageName().replace(".", "/") + "/alphabet.txt";
-            fos = new FileOutputStream(new File(path));
+            out = new FileOutputStream(new File(path));
         } catch (FileNotFoundException e) {
             System.out.println("Error while opening file");
             return;
         }
         try {
             for (int i = 0; i < values.length; i += 2) {
-                fos.write(values[i]);
+                out.write(values[i]);
             }
             for (int i = 0; i < values.length; i += 2) {
-                fos.write(values[i + 1]);
+                out.write(values[i + 1]);
             }
         } catch (IOException e) {
             System.out.println("Error while writing to file");
             return;
         }
         try {
-            fos.close();
+            out.close();
         } catch (IOException e) {
             System.out.println("Error while closing file");
         }
