@@ -63,10 +63,17 @@ public class Zipper {
                 System.out.printf(Locale.ENGLISH,
                         "original size: %d | compressed size: %d | compression rate: %.2f\n",
                         zipEntry.getSize(), zipEntry.getCompressedSize(),
-                        zipEntry.getCompressedSize() * 100d / zipEntry.getSize());
+                        100d - (zipEntry.getCompressedSize() * 100d / zipEntry.getSize()));
             } catch (IOException e) {
                 System.out.println("Error while closing input file " + entry.getName());
             }
+        }
+        try {
+            out.close();
+        } catch (ZipException e) {
+            System.out.println("Broken zip file " + archive.getName());
+        } catch (IOException e) {
+            System.out.println("Error while writing to file " + archive.getName());
         }
     }
 }
