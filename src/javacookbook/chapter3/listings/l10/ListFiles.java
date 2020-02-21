@@ -12,6 +12,13 @@ public class ListFiles {
         }
         String path = System.getProperty("java.class.path") + "/";
         File directory = new File(path + args[0]);
+        if (!directory.exists()) {
+            System.out.println(directory.getName() + " not found");
+            return;
+        }
+        if (!directory.isDirectory()) {
+            System.out.println(directory.getName() + " is not a directory");
+        }
         System.out.println("All files and folders:");
         listFiles(directory);
         System.out.println("\nOnly java class files:");
@@ -29,12 +36,6 @@ public class ListFiles {
     }
 
     private static void listFiles(File file, int depth, FileFilter filter) {
-        if (file == null) {
-            return;
-        }
-        if (!file.isDirectory()) {
-            return;
-        }
         if (depth < 0) {
             return;
         }
