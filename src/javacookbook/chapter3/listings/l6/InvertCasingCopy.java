@@ -10,24 +10,26 @@ public class InvertCasingCopy {
             return;
         }
 
-        String path = System.getProperty("java.class.path") + "/";
-        path += InvertCasingCopy.class.getPackageName().replace(".", "/") + "/";
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += InvertCasingCopy.class.getPackageName().replace(".", File.separator) + File.separator;
+        File input = new File(path + args[0]);
+        File output = new File(path + args[1]);
         BufferedReader reader;
         BufferedWriter writer;
         try {
-            reader = new BufferedReader(new FileReader(new File(path + args[0])));
+            reader = new BufferedReader(new FileReader(new File(path + input.getName())));
         } catch (FileNotFoundException e) {
-            System.out.println("Original file " + args[0] + " not found");
+            System.out.println("Original file " + input.getName() + " not found");
             return;
         }
         try {
-            writer = new BufferedWriter(new FileWriter(new File(path + args[1])));
+            writer = new BufferedWriter(new FileWriter(new File(path + output.getName())));
         } catch (IOException e) {
-            System.out.println("Error while opening output file " + args[1]);
+            System.out.println("Error while opening output file " + output.getName());
             try {
                 reader.close();
             } catch (IOException ex) {
-                System.out.println("Error while closing input file " + args[0]);
+                System.out.println("Error while closing input file " + input.getName());
             }
             return;
         }
@@ -53,12 +55,12 @@ public class InvertCasingCopy {
         try {
             reader.close();
         } catch (IOException e) {
-            System.out.println("Error while closing input file " + args[0]);
+            System.out.println("Error while closing input file " + input.getName());
         }
         try {
             writer.close();
         } catch (IOException e) {
-            System.out.println("Error while closing output file " + args[1]);
+            System.out.println("Error while closing output file " + output.getName());
         }
     }
 }

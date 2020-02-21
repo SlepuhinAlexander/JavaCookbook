@@ -10,7 +10,7 @@ public class ListFiles {
             // test usage: java ListFiles javacookcook/chapter3
             return;
         }
-        String path = System.getProperty("java.class.path") + "/";
+        String path = System.getProperty("java.class.path") + File.separator;
         File directory = new File(path + args[0]);
         if (!directory.exists()) {
             System.out.println(directory.getName() + " not found");

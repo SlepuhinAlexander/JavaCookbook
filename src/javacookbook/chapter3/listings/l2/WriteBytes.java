@@ -10,6 +10,7 @@ public class WriteBytes {
         if (args.length < 1) {
             System.out.println("usage: java WriteBytes filename");
             // test usage: java WriteBytes alphabet.txt
+            return;
         }
         byte[] values = new byte[52];
         for (int i = 0; i < 26; i++) {
@@ -21,12 +22,13 @@ public class WriteBytes {
             System.out.print(((char) b));
         }
         FileOutputStream out;
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += WriteBytes.class.getPackageName().replace(".", File.separator) + File.separator;
+        File file = new File(path + args[0]);
         try {
-            String path = System.getProperty("java.class.path") + "/";
-            path += WriteBytes.class.getPackageName().replace(".", "/") + "/";
-            out = new FileOutputStream(new File(path + args[0]));
+            out = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Error while opening file " + args[0]);
+            System.out.println("Error while opening file " + file.getName());
             return;
         }
         try {
@@ -37,13 +39,13 @@ public class WriteBytes {
                 out.write(values[i + 1]);
             }
         } catch (IOException e) {
-            System.out.println("Error while writing to file " + args[0]);
+            System.out.println("Error while writing to file " + file.getName());
             return;
         }
         try {
             out.close();
         } catch (IOException e) {
-            System.out.println("Error while closing file " + args[0]);
+            System.out.println("Error while closing file " + file.getName());
         }
     }
 }

@@ -12,23 +12,25 @@ public class ReverseFile {
             //test usage: java ReverseFile README.md README.copy
             return;
         }
-        String path = System.getProperty("java.class.path") + "/";
-        path += ReverseFile.class.getPackageName().replace(".", "/") + "/";
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += ReverseFile.class.getPackageName().replace(".", File.separator) + File.separator;
         RandomAccessFile in, out;
+        File input = new File(path + args[0]);
+        File output = new File(path + args[1]);
         try {
-            in = new RandomAccessFile(new File(path + args[0]), "r");
+            in = new RandomAccessFile(input, "r");
         } catch (FileNotFoundException e) {
-            System.out.println("Error while opening input file " + args[0]);
+            System.out.println("Error while opening input file " + input.getName());
             return;
         }
         try {
-            out = new RandomAccessFile(new File(path + args[1]), "rw");
+            out = new RandomAccessFile(output, "rw");
         } catch (FileNotFoundException e) {
-            System.out.println("Error while opening output file " + args[1]);
+            System.out.println("Error while opening output file " + output.getName());
             try {
                 in.close();
             } catch (IOException ex) {
-                System.out.println("Error while closing input file " + args[0]);
+                System.out.println("Error while closing input file " + input.getName());
             }
             return;
         }
@@ -37,7 +39,7 @@ public class ReverseFile {
                 out.write(in.read());
             }
         } catch (IOException e) {
-            System.out.println("Error while copying from " + args[0] + " to " + args[1]);
+            System.out.println("Error while copying from " + input.getName() + " to " + output.getName());
         }
         try {
             int x, y;
@@ -52,12 +54,12 @@ public class ReverseFile {
                 out.write(x);
             }
         } catch (IOException e) {
-            System.out.println("Error while writing to output file " + args[1]);
+            System.out.println("Error while writing to output file " + output.getName());
         }
         try {
             in.close();
         } catch (IOException e) {
-            System.out.println("Error while closing input file " + args[0]);
+            System.out.println("Error while closing input file " + input.getName());
         }
         try {
             out.close();

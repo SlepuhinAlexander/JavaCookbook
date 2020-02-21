@@ -7,18 +7,19 @@ import java.io.IOException;
 
 public class ShowFile {
     public static void main(String[] args) {
-        FileReader reader;
-        String path = System.getProperty("java.class.path") + "/";
-        path += ShowFile.class.getPackageName().replace(".", "/") + "/";
         if (args.length < 1) {
             System.out.println("Usage: java ShowFile filename");
             // test usage: java ShowFile README.md
             return;
         }
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += ShowFile.class.getPackageName().replace(".", File.separator) + File.separator;
+        File file = new File(path + args[0]);
+        FileReader reader;
         try {
-            reader = new FileReader(new File(path + args[0]));
+            reader = new FileReader(file);
         } catch (FileNotFoundException e) {
-            System.out.println("File " + args[0] + " not found");
+            System.out.println("File " + file.getName() + " not found");
             return;
         }
         try {
@@ -31,12 +32,12 @@ public class ShowFile {
                 }
             } while (count != -1);
         } catch (IOException e) {
-            System.out.println("Error while reading the file " + args[0]);
+            System.out.println("Error while reading the file " + file.getName());
         }
         try {
             reader.close();
         } catch (IOException e) {
-            System.out.println("Error while closing the file " + args[0]);
+            System.out.println("Error while closing the file " + file.getName());
         }
     }
 }

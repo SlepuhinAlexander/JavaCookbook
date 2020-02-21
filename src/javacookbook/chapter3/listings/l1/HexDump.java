@@ -13,16 +13,17 @@ public class HexDump {
             // test usage: java HexDump README.md
             return;
         }
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += HexDump.class.getPackageName().replace(".", File.separator) + File.separator;
+        File file = new File(path + args[0]);
         try {
-            String path = System.getProperty("java.class.path") + "/";
-            path += HexDump.class.getPackageName().replace(".","/") + "/";
-            in = new FileInputStream(new File(path + args[0]));
+            in = new FileInputStream(file);
         } catch (FileNotFoundException e) {
-            System.out.println("File " + args[0] + " not found");
+            System.out.println("File " + file.getName() + " not found");
             return;
         }
         try {
-            System.out.println(args[0] + " in hex:");
+            System.out.println(file.getName() + " in hex:");
             int length;
             byte[] data = new byte[16];
             do {
@@ -33,13 +34,13 @@ public class HexDump {
                 System.out.println();
             } while (length != -1);
         } catch (IOException e) {
-            System.out.println("Error while reading file " + args[0]);
+            System.out.println("Error while reading file " + file.getName());
             return;
         }
         try {
             in.close();
         } catch (IOException e) {
-            System.out.println("Error while closing file " + args[0]);
+            System.out.println("Error while closing file " + file.getName());
         }
     }
 }

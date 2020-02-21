@@ -11,16 +11,17 @@ public class WriteChars {
             // test usage: java WriteChars employees.txt
             return;
         }
-        String path = System.getProperty("java.class.path") + "/";
-        path += WriteChars.class.getPackageName().replace(".", "/") + "/";
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += WriteChars.class.getPackageName().replace(".", File.separator) + File.separator;
+        File file = new File(path + args[0]);
 
         FileWriter writer;
         String[] data = {"32435 Tom@HerbSchildt.com", "86754 Mary@HerbSchildt.com", "35789 TC@HerbSchildt.com"};
 
         try {
-            writer = new FileWriter(new File(path + args[0]));
+            writer = new FileWriter(file);
         } catch (IOException e) {
-            System.out.println("Error while opening file " + args[0]);
+            System.out.println("Error while opening file " + file.getName());
             return;
         }
         try {
@@ -29,12 +30,12 @@ public class WriteChars {
                 writer.write("\n");
             }
         } catch (IOException e) {
-            System.out.println("Error while writing to file " + args[0]);
+            System.out.println("Error while writing to file " + file.getName());
         }
         try {
             writer.close();
         } catch (IOException e) {
-            System.out.println("Error while closing file " + args[0]);
+            System.out.println("Error while closing file " + file.getName());
         }
     }
 }

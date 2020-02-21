@@ -12,8 +12,8 @@ public class ShowFileAttributes {
             // test usage: java ShowFileAttributes README.md
             return;
         }
-        String path = System.getProperty("java.class.path") + "/";
-        path += ShowFileAttributes.class.getPackageName().replace(".", "/") + "/";
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += ShowFileAttributes.class.getPackageName().replace(".", File.separator) + File.separator;
         File file = new File(path + args[0]);
         showAttributes(file);
     }

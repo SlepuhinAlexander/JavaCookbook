@@ -9,24 +9,26 @@ public class BufferedFileCopy {
             // test usage: java BufferedFileCopy README.md README.copy
             return;
         }
-        String path = System.getProperty("java.class.path") + "/";
-        path += BufferedFileCopy.class.getPackageName().replace(".", "/") + "/";
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += BufferedFileCopy.class.getPackageName().replace(".", File.separator) + File.separator;
         BufferedInputStream in;
         BufferedOutputStream out;
+        File input = new File(path + args[0]);
+        File output = new File(path + args[1]);
         try {
-            in = new BufferedInputStream(new FileInputStream(new File(path + args[0])));
+            in = new BufferedInputStream(new FileInputStream(input));
         } catch (FileNotFoundException e) {
-            System.out.println("Original file " + args[0] + " not found");
+            System.out.println("Original file " + input.getName() + " not found");
             return;
         }
         try {
-            out = new BufferedOutputStream(new FileOutputStream(new File(path + args[1])));
+            out = new BufferedOutputStream(new FileOutputStream(output));
         } catch (FileNotFoundException e) {
-            System.out.println("Error while opening output file " + args[1]);
+            System.out.println("Error while opening output file " + output.getName());
             try {
                 in.close();
             } catch (IOException ex) {
-                System.out.println("Error while closing input file " + args[0]);
+                System.out.println("Error while closing input file " + input.getName());
             }
             return;
         }
@@ -44,12 +46,12 @@ public class BufferedFileCopy {
         try {
             in.close();
         } catch (IOException e) {
-            System.out.println("Error while closing input file " + args[0]);
+            System.out.println("Error while closing input file " + input.getName());
         }
         try {
             out.close();
         } catch (IOException e) {
-            System.out.println("Error while closing output file " + args[1]);
+            System.out.println("Error while closing output file " + output.getName());
         }
     }
 }

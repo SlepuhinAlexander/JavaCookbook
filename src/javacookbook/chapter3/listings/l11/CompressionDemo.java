@@ -16,8 +16,8 @@ public class CompressionDemo {
         for (int i = 0; i < data.length; i++) {
             data[i] = Math.round((r.nextDouble() + r.nextInt(100)) * 10000) / 10000D;
         }
-        String path = System.getProperty("java.class.path") + "/";
-        path += CompressionDemo.class.getPackageName().replace(".", "/") + "/";
+        String path = System.getProperty("java.class.path") + File.separator;
+        path += CompressionDemo.class.getPackageName().replace(".", File.separator) + File.separator;
         File file = new File(path + "data.compressed");
         try {
             out = new DataOutputStream(new DeflaterOutputStream(new FileOutputStream(file)));
