@@ -82,7 +82,7 @@ public class CollectionBasics {
         }
     }
 
-    public static void printCollection(Collection<?> c) {
+    public static <T> void printCollection(Collection<T> c) {
         System.out.print("{");
         for (Object o : c) {
             System.out.print(o + " ");
