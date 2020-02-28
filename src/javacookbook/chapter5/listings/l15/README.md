@@ -1,0 +1,1 @@
+### Converting a list of Properties into a HashMap
