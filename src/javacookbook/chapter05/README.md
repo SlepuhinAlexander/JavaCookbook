@@ -1,0 +1,17 @@
+## Working with collections
+
+1. [Basic operations with collections](listings/l01)
+2. [Working with lists](listings/l02)
+3. [Working with sets](listings/l03)
+4. [Math operations with sets](listings/l04)
+5. [Using Comparable for storing a sorted collection](listings/l05)
+6. [Using Comparator with collection](listings/l06)
+7. [Iterating through collections](listings/l07)
+8. [Creating stack or queue using Deque](listings/l08)
+9. [Reversing, rotating and shuffling lists](listings/l09)
+10. [Sorting and searching in lists](listings/l10)
+11. [Creating a checked collection](listings/l11)
+12. [Creating a synchronized collection](listings/l12)
+13. [Creating an unmodifiable collection](listings/l14)
+14. [Basic operations with Map](listings/l15)
+15. [Converting a list of Properties into a HashMap](listings/l15)

@@ -1,0 +1,16 @@
+## Data formatting
+
+1. [Four simple number formatting examples](listings/l01)
+2. [Vertical alignment for numeric data](listings/l02)
+3. [Center vertical alignment](listings/l03)
+4. [Left vertical data alignment](listings/l04)
+5. [Date and time formatting](listings/l05)
+6. [Selecting locale while using Formatter](listings/l06)
+7. [Using streams with Formatter](listings/l07)
+8. [Using printf() for data formatting](listings/l09)
+9. [Using printf() for timestamps in logs](listings/l09)
+10. [Formatting datetime using DateFormat](listings/l10)
+11. [Formatting datetime with templates using SimpleDateFormat](listings/l11)
+12. [Formatting numeric data using NumberFormat](listings/l12)
+13. [Formatting currency values using NumberFormat](listings/l13)
+14. [Formatting numeric data with templates using DecimalFormat](listings/l14)
